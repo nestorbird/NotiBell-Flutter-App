@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "239979151828",
+    "project_id": "apprize-e7156",
+    "storage_bucket": "apprize-e7156.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239979151828:android:068d4e713bf7d87ed09641",
+        "android_client_info": {
+          "package_name": "com.example.apprize_mobile_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239979151828-lapms37oonrqd2cs9e9nshs4tg42iu0s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSEKqUpzD7-PZsdD_eJZHG4g5ZBSXZcjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239979151828-lapms37oonrqd2cs9e9nshs4tg42iu0s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

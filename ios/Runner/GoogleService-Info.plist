@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>239979151828-90uvhe3vrcj93qdsed0lskqpt92tmj0a.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.239979151828-90uvhe3vrcj93qdsed0lskqpt92tmj0a</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAgO3FBZ5BsNz16lpBqc5jS-PgIEHQaFEc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>239979151828</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.apprizeMobileApp</string>
+	<key>PROJECT_ID</key>
+	<string>apprize-e7156</string>
+	<key>STORAGE_BUCKET</key>
+	<string>apprize-e7156.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:239979151828:ios:c31404ff3cc24d0ad09641</string>
+</dict>
+</plist>
