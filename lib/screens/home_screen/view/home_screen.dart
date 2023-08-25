@@ -20,10 +20,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late HomeScreenProvider _homeScreenProvider;
   String profileImageurl = "";
-  bool _selected = false;
-  bool _selected2 = false;
 
-  List<String> name = ['Home', 'Support'];
+  List<String> texts = ['Home', 'Support'];
+  List<bool> _isSelected = [true, false];
+  List<Widget> _list = [const HomeScreen(), const SizedBox()];
+  List<String> images = [
+    "lib/assets/images/home.png",
+    "lib/assets/images/headphone.png"
+  ];
 
   @override
   void initState() {
@@ -55,76 +59,54 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 20, 20, 0),
-                child: Container(
-                  // color: Colors.blueAccent,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border:
-                                Border.all(color: Colors.white, width: 1.0)),
-                        child: IconButton(
-                            icon: Icon(
-                              Icons.menu,
-                              size: 28,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              _globalKey.currentState!.openDrawer();
-                            }),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 1.0)),
+                      child: IconButton(
+                          icon: const Icon(
+                            Icons.menu,
+                            size: 28,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            _globalKey.currentState!.openDrawer();
+                          }),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      height: 90,
+                      width: 100,
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Text 1',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text('Text 2', style: TextStyle(color: Colors.white))
+                        ],
                       ),
-                      // Ink(
-                      //   decoration: BoxDecoration(
-                      //     border: Border.all(color: Colors.white, width: 10.0),
-                      //     shape: BoxShape.circle,
-                      //   ),
-                      //   child: InkWell(
-                      //     borderRadius: BorderRadius.circular(100.0),
-                      //     onTap: () {
-                      //       setState(() {
-                      //         _globalKey.currentState!.openDrawer();
-                      //       });
-                      //     },
-                      //     child: const Padding(
-                      //       padding: EdgeInsets.all(10.0),
-                      //       child: Icon(
-                      //         Icons.menu,
-                      //         size: 28.0,
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        height: 90,
-                        width: 100,
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Text 1',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text('Text 2',
-                                style: TextStyle(color: Colors.white))
-                          ],
-                        ),
+                    ),
+                    const CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 30,
+                      child: Icon(
+                        Icons.person,
+                        color: Colors.grey,
+                        size: 28,
                       ),
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 30,
-                        // child: _getNetworkImage(value.profileImageUrl!, ""),
-                      )
-                    ],
-                  ),
+                      // child: _getNetworkImage(value.profileImageUrl!, ""),
+                    )
+                  ],
                 ),
               ),
               Container(
@@ -179,7 +161,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget get _drawer {
-    return Stack(
+    return Drawer(
+        child: Stack(
       fit: StackFit.passthrough,
       children: [
         Container(
@@ -187,11 +170,6 @@ class _HomeScreenState extends State<HomeScreen> {
           width: MediaQuery.of(context).size.width * 0.84,
           padding: const EdgeInsets.all(20),
           color: const Color.fromARGB(255, 33, 100, 243),
-          // decoration: BoxDecoration(
-          //   image: DecorationImage(
-          //       image: AssetImage(AssetPaths.homeBackgroundImg),
-          //       fit: BoxFit.cover),
-          // ),
         ),
         Container(
           width: MediaQuery.of(context).size.width * 0.84,
@@ -213,16 +191,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 50,
                 ),
                 Container(
-                    alignment: Alignment.center,
-                    child: const Column(
-                      children: [
-                        Text(
-                          "Abc Mishra",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        Text("abc977@gmail.com")
-                      ],
-                    )),
+                  alignment: Alignment.center,
+                  child: const Column(
+                    children: [
+                      Text(
+                        "Abc Mishra",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Text("abc977@gmail.com")
+                    ],
+                  ),
+                ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -238,77 +217,48 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Expanded(
                     child: Container(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: ListView(
-                    children: [
-                      ListTile(
-                        selected: _selected,
-                        leading: const Icon(Icons.home),
-                        minLeadingWidth: 0,
-                        title: const Text(
-                          'Home',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        onTap: () {
-                          setState(() {
-                            _selected = !_selected;
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HomeScreen()),
-                            );
-                          });
-                        },
-                        iconColor: MaterialStateColor.resolveWith(
-                            (Set<MaterialState> State) {
-                          if (State.contains(MaterialState.selected)) {
-                            return Colors.black;
-                          } else {
-                            return Colors.grey;
-                          }
-                        }),
-                        textColor: MaterialStateColor.resolveWith(
-                            (Set<MaterialState> State) {
-                          if (State.contains(MaterialState.selected)) {
-                            return Colors.black;
-                          } else {
-                            return Colors.grey;
-                          }
-                        }),
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.headphones),
-                        title: const Text(' Support',
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold)),
-                        minLeadingWidth: 0,
-                        onTap: () {
-                          _selected2 = !_selected2;
-                          Navigator.pop(context);
-                        },
-                        iconColor: MaterialStateColor.resolveWith(
-                            (Set<MaterialState> State) {
-                          if (State.contains(MaterialState.selected)) {
-                            return Colors.black;
-                          } else {
-                            return Colors.grey;
-                          }
-                        }),
-                        textColor: MaterialStateColor.resolveWith(
-                            (Set<MaterialState> State) {
-                          if (State.contains(MaterialState.selected)) {
-                            return Colors.black;
-                          } else {
-                            return Colors.grey;
-                          }
-                        }),
-                      ),
-                    ],
-                  ),
-                )),
+                        padding: const EdgeInsets.only(left: 10),
+                        child: ListView.builder(
+                            itemCount: texts.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ListTile(
+                                onTap: () {
+                                  for (int i = 0; i < _isSelected.length; i++) {
+                                    setState(() {
+                                      if (index == i) {
+                                        _isSelected[index] = true;
+                                        setState(() {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    _list[index]),
+                                          );
+                                        });
+                                      } else {
+                                        _isSelected[i] = false;
+                                      }
+                                    });
+                                  }
+                                },
+                                minLeadingWidth: 0,
+                                leading: Image.asset(
+                                  images[index],
+                                  color: _isSelected[index]
+                                      ? Colors.black
+                                      : Colors.grey,
+                                ),
+                                title: Text(
+                                  texts[index],
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: _isSelected[index]
+                                          ? Colors.black
+                                          : Colors.grey),
+                                ),
+                              );
+                            }))),
                 const Divider(
                   color: Colors.grey,
                 ),
@@ -327,19 +277,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [Image.asset('lib/assets/images/logout.png')],
                     ),
-                    // child: ListTile(
-                    //   leading: const Icon(
-                    //     Icons.logout,
-                    //   ),
-                    //   minLeadingWidth: 0,
-                    //   title: const Text(
-                    //     ' Logout ',
-                    //     textAlign: TextAlign.center,
-                    //   ),
-                    //   onTap: () {
-                    //     Navigator.pop(context);
-                    //   },
-                    // ),
                   ),
                 )
               ],
@@ -364,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         )
       ],
-    );
+    ));
   }
 
   // Widget _getNetworkImage(String networkImageUrl, String defaultAssetUrl) {
