@@ -2,11 +2,13 @@ import 'package:apprize_mobile_app/screens/completed_approvals_screen/view/compl
 import 'package:apprize_mobile_app/screens/home_screen/provider/home_screen_provider.dart';
 import 'package:apprize_mobile_app/screens/login_screen/view/login_screen.dart';
 import 'package:apprize_mobile_app/services/preference_service/storage_helper.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common_widgets/containers/home_option_card_widget.dart';
+import '../../../services/camera_service/camera_page.dart';
 import '../../../utils/asset_res/asset_paths.dart';
 import '../../approvals_list_screen/view/approvals_list_scren.dart';
 
@@ -29,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     "lib/assets/images/headphone.png"
   ];
 
+  final cameras = availableCameras();
   @override
   void initState() {
     _homeScreenProvider = Provider.of(context, listen: false);
@@ -124,7 +127,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         HomeOptionCard(
                           titleText: "Check In",
                           subTitleText: "04 Aug 2023",
-                          onTap: () {},
+                          onTap: () async {
+                            await availableCameras().then((value) =>
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) =>
+                                            CameraPage(cameras: value))));
+                          },
                         ),
                         const SizedBox(height: 20),
                         HomeOptionCard(
