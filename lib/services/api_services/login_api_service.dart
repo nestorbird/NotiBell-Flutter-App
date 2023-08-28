@@ -24,6 +24,13 @@ class LoginService {
           baseUrl = "https://$baseUrl";
         }
 
+        if (!_isValidUrl(baseUrl)) {
+          return CommanResponse(
+              status: false,
+              message: "Instance URL format is invalid",
+              apiStatus: ApiStatus.NO_INTERNET);
+        }
+
         var request = <String, dynamic>{};
 
         request["usr"] = username;
@@ -76,6 +83,13 @@ class LoginService {
           message: e.toString(),
           apiStatus: ApiStatus.REQUEST_FAILURE);
     }
+  }
+
+  static bool _isValidUrl(String url) {
+    // Regex to check valid URL
+    String regex =
+        "((http|https)://)(www.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)";
+    return RegExp(regex).hasMatch(url);
   }
 
   // Future<CommanResponse> checkUrl(String apiUrl) async {

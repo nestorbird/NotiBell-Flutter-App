@@ -1,12 +1,12 @@
 import 'package:apprize_mobile_app/common_widgets/appbar/appbar_widget.dart';
 import 'package:apprize_mobile_app/screens/approval_details_screen/view/approval_details_screen.dart';
-import 'package:apprize_mobile_app/screens/approvals_list_screen/provider/approval_list_provider.dart';
 import 'package:apprize_mobile_app/screens/completed_approvals_screen/provider/completed_approvals_provider.dart';
 import 'package:apprize_mobile_app/utils/color_res/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../common_widgets/containers/approvals_card_widget.dart';
+import '../../../common_widgets/containers/completed_approvals_card_widget.dart';
+import '../../approval_details_screen/view/completed_approval_screen.dart';
 
 class CompletedApprovalsListScreen extends StatefulWidget {
   const CompletedApprovalsListScreen({super.key});
@@ -29,7 +29,8 @@ class _CompletedApprovalsListScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CompletedApprovalsListProvider>(builder: (context, value, _) {
+    return Consumer<CompletedApprovalsListProvider>(
+        builder: (context, value, _) {
       return SafeArea(
           child: Scaffold(
         body: Container(
@@ -58,23 +59,26 @@ class _CompletedApprovalsListScreenState
                           shrinkWrap: true,
                           itemCount: value.workflows.length,
                           itemBuilder: (context, index) {
-                            return ApprovalsCardWidget(
+                            return CompletedApprovalsCardWidget(
                               docId: value.workflows[index]['name'],
                               doctype: value.workflows[index]
                                   ['reference_doctype'],
                               status: value.workflows[index]['status'],
+                              modifiedBy: "",
+                              workflowTransition: const [],
                               onTap: () async {
                                 await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            ApprovalDetailsScreen(
+                                            CompletedApprovalDetailsScreen(
                                               docType: value.workflows[index]
                                                   ['reference_doctype'],
                                               docTypeId: value.workflows[index]
                                                   ['reference_name'],
                                               currentStatus: value
                                                   .workflows[index]['status'],
+                                              workflowTransition: const [],
                                             )));
                               },
                             );

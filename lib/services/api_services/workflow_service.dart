@@ -1,3 +1,4 @@
+import 'package:apprize_mobile_app/screens/approvals_list_screen/model/approvals_list_model.dart';
 import 'package:apprize_mobile_app/services/api_utils/api_paths.dart';
 import 'package:apprize_mobile_app/services/api_utils/common_response.dart';
 
@@ -8,6 +9,7 @@ import '../preference_service/storage_constants.dart';
 import '../preference_service/storage_helper.dart';
 
 class WorkflowService {
+  @Deprecated("API changed to getWorkflowList")
   static Future<CommanResponse> getWorkflowEntries() async {
     try {
       var isInternetAvailable = await InternetService.isNetworkAvailable();
@@ -32,6 +34,46 @@ class WorkflowService {
         } else {
           return CommanResponse(
               status: false, message: "", apiStatus: ApiStatus.REQUEST_FAILURE);
+        }
+      } else {
+        return CommanResponse(
+            status: false,
+            message: "No internet connection",
+            apiStatus: ApiStatus.NO_INTERNET);
+      }
+    } catch (e) {
+      return CommanResponse(
+          status: false,
+          message: e.toString(),
+          apiStatus: ApiStatus.REQUEST_FAILURE);
+    }
+  }
+
+  static Future<CommanResponse> getWorkflowList() async {
+    try {
+      var isInternetAvailable = await InternetService.isNetworkAvailable();
+
+      if (isInternetAvailable) {
+        String baseUrl =
+            await StorageHelper().getStringValues(StorageConstants.baseUrl) ??
+                "";
+
+        String apiPath = ApiPaths.workflowListPath(baseUrl);
+
+        var apiResponse = await ApiFunctions().getRequest(apiPath);
+
+        var workflows = ApprovalsListModel.fromJson(apiResponse);
+
+        if (workflows.data.isNotEmpty) {
+          return CommanResponse(
+              status: true,
+              message: workflows.data,
+              apiStatus: ApiStatus.REQUEST_SUCCESS);
+        } else {
+          return CommanResponse(
+              status: false,
+              message: "No data found",
+              apiStatus: ApiStatus.NO_DATA_AVAILABLE);
         }
       } else {
         return CommanResponse(

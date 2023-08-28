@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../screens/approvals_list_screen/model/approvals_list_model.dart';
 import '../../utils/color_res/app_colors.dart';
-import '../buttons/short_button_widget.dart';
 
-class ApprovalsCardWidget extends StatelessWidget {
+class CompletedApprovalsCardWidget extends StatelessWidget {
   final String docId;
   final String status;
   final String doctype;
   final String modifiedBy;
   final Function onTap;
   final List<WorkflowTransition> workflowTransition;
-  const ApprovalsCardWidget(
+  const CompletedApprovalsCardWidget(
       {super.key,
       required this.docId,
       required this.status,
@@ -23,7 +22,7 @@ class ApprovalsCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 160,
+        height: 120,
         child: GestureDetector(
             onTap: () => onTap(),
             child: Card(
@@ -74,24 +73,24 @@ class ApprovalsCardWidget extends StatelessWidget {
                                       color: AppColors.blackColor)),
                             ],
                           ),
-                          const SizedBox(height: 10),
-                          const Divider(thickness: 1),
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ShortButtonWidget(
-                                  buttonText: workflowTransition.isNotEmpty
-                                      ? workflowTransition[0].action
-                                      : "",
-                                  onPressed: () {}),
-                              ShortButtonWidget(
-                                  buttonText: workflowTransition.length > 2
-                                      ? workflowTransition[1].action
-                                      : "",
-                                  onPressed: () {})
-                            ],
-                          )
+                          // const SizedBox(height: 10),
+                          // const Divider(thickness: 1),
+                          // const SizedBox(height: 10),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //   children: [
+                          //     ShortButtonWidget(
+                          //         buttonText: workflowTransition.isNotEmpty
+                          //             ? workflowTransition[0].action
+                          //             : "",
+                          //         onPressed: () {}),
+                          //     ShortButtonWidget(
+                          //         buttonText: workflowTransition.length > 2
+                          //             ? workflowTransition[1].action
+                          //             : "",
+                          //         onPressed: () {})
+                          //   ],
+                          // )
                         ],
                       )),
                 ))));

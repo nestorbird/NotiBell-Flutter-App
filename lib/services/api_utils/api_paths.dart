@@ -10,6 +10,8 @@ class ApiPaths {
   static String workflowActionListPath(String baseUrl) =>
       "$baseUrl/api/resource/Workflow Action";
 
+  static String workflowListPath(String baseUrl) => "$baseUrl/api/method/apprize.api.action_list";
+
   static String workflowDocTransitionPath(String baseUrl, String doctype) =>
       "$baseUrl/api/resource/Workflow/$doctype";
 

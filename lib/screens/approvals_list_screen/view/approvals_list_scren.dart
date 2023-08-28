@@ -20,7 +20,7 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
   @override
   void initState() {
     _approvalListProvider = Provider.of(context, listen: false);
-    _approvalListProvider.getWorkFlowList();
+    _approvalListProvider.getWorkFlowListData();
     super.initState();
   }
 
@@ -40,7 +40,8 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
                   const SizedBox(height: 40),
                   Visibility(
                       visible: !value.isLoading,
-                      child: Text('Showing ${value.workflows.length} Approvals',
+                      child: Text(
+                          'Showing ${value.workflowList.length} Approvals',
                           style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
@@ -51,15 +52,24 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
                       child: Expanded(
                           child: ListView.builder(
                               shrinkWrap: true,
-                              itemCount: value.workflows.length,
+                              itemCount: value.workflowList.length,
                               itemBuilder: (context, index) {
                                 return Padding(
                                     padding: const EdgeInsets.only(bottom: 10),
                                     child: ApprovalsCardWidget(
-                                      docId: value.workflows[index]['name'],
-                                      doctype: value.workflows[index]
-                                          ['reference_doctype'],
-                                      status: value.workflows[index]['status'],
+                                      docId: value
+                                          .workflowList[index].referenceName,
+                                      doctype: value
+                                          .workflowList[index].referenceDoctype,
+                                      status: value
+                                          .workflowList[index].currentState,
+                                      modifiedBy:
+                                          value.workflowList[index].fullName,
+                                      workflowTransition:
+                                          value.workflowList.isNotEmpty
+                                              ? value.workflowList[index]
+                                                  .workflowTransition
+                                              : [],
                                       onTap: () async {
                                         await Navigator.push(
                                             context,
@@ -67,17 +77,26 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
                                                 builder: (context) =>
                                                     ApprovalDetailsScreen(
                                                       docType: value
-                                                              .workflows[index]
-                                                          ['reference_doctype'],
+                                                          .workflowList[index]
+                                                          .referenceDoctype,
                                                       docTypeId: value
-                                                              .workflows[index]
-                                                          ['reference_name'],
-                                                      currentStatus:
-                                                          value.workflows[index]
-                                                              ['status'],
+                                                          .workflowList[index]
+                                                          .referenceName,
+                                                      currentStatus: value
+                                                          .workflowList[index]
+                                                          .currentState,
+                                                      workflowTransition: value
+                                                              .workflowList
+                                                              .isNotEmpty
+                                                          ? value
+                                                              .workflowList[
+                                                                  index]
+                                                              .workflowTransition
+                                                          : [],
                                                     )));
 
-                                        _approvalListProvider.getWorkFlowList();
+                                        _approvalListProvider
+                                            .getWorkFlowListData();
                                       },
                                     ));
                               })))
