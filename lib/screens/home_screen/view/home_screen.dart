@@ -1,10 +1,11 @@
 import 'package:apprize_mobile_app/screens/completed_approvals_screen/view/completed_approvals_screen.dart';
 import 'package:apprize_mobile_app/screens/home_screen/provider/home_screen_provider.dart';
 import 'package:apprize_mobile_app/screens/login_screen/view/login_screen.dart';
+import 'package:apprize_mobile_app/screens/support_screen/support_screen.dart';
 import 'package:apprize_mobile_app/services/preference_service/storage_helper.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+// import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common_widgets/containers/home_option_card_widget.dart';
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<String> texts = ['Home', 'Support'];
   List<bool> _isSelected = [true, false];
-  List<Widget> _list = [const HomeScreen(), const SizedBox()];
+  List<Widget> _list = [const HomeScreen(), const SupportScreen()];
   List<String> images = [
     "lib/assets/images/home.png",
     "lib/assets/images/headphone.png"
