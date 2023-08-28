@@ -75,9 +75,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: Image.asset(AssetPaths.appIcon)),
+                          height: 90,
+                          width: 90,
+                          child: Image.asset(AssetPaths.appLogo2)),
                       Text(
                         AppStrings.signInTitleTxt,
                         style: const TextStyle(
