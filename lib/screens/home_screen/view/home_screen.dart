@@ -233,7 +233,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
                                 onTap: () {
-                                  for (int i = 0; i < _isSelected.length; i++) {
+                                  if (index == 0) {
+                                    Navigator.pop(context);
+                                  }
+                                  for (int i = 1; i < _isSelected.length; i++) {
                                     setState(() {
                                       if (index == i) {
                                         _isSelected[index] = true;

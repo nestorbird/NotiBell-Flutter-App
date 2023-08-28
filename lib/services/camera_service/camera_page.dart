@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+import '../../screens/approved_attendance_screen/views/approved_attendance_screen.dart';
+
 class CameraPage extends StatefulWidget {
   final List<CameraDescription>? cameras;
   const CameraPage({super.key, this.cameras});
@@ -11,7 +13,6 @@ class CameraPage extends StatefulWidget {
 
 class _CameraPageState extends State<CameraPage> {
   late CameraController _cameraController;
-  bool _isRearCameraSelected = true;
 
   @override
   void dispose() {
@@ -68,18 +69,24 @@ class _CameraPageState extends State<CameraPage> {
           SafeArea(
               child: (_cameraController.value.isInitialized)
                   ? CameraPreview(_cameraController)
-                  : Center(child: CircularProgressIndicator())),
+                  : const Center(child: CircularProgressIndicator())),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.30,
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ApprovedAttendanceScreen()),
+                  );
+                },
                 iconSize: 50,
                 padding: EdgeInsets.zero,
-                constraints: BoxConstraints(),
-                icon: CircleAvatar(
+                constraints: const BoxConstraints(),
+                icon: const CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.white,
                   child: CircleAvatar(

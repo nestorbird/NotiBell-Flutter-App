@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   # Dependency for SVG Picture
-  flutter_svg: any
+  flutter_svg: ^2.0.7
 
   # Dependency for Google Fonts
   google_fonts: any
@@ -60,6 +60,10 @@ dependencies:
 
   #intl
   intl: ^0.18.1
+  camera: ^0.10.5+3
+  
+  path_provider: ^2.1.0
+  path: ^1.8.3
 
 
 dev_dependencies:
