@@ -1,6 +1,6 @@
 class AppStrings {
   //SPLASH SCREEN TEXTS
-  static String appName = "Apprize";
+  static String appName = "NotiBell";
 
   //LOGIN SCREEN TEXTS
   static String signInTitleTxt = "Sign in to your \nAccount";
