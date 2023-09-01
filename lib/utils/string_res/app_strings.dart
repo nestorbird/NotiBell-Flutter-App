@@ -12,4 +12,8 @@ class AppStrings {
 
   //HOME SCREEN TEXTS
   //static String linkTxt = "Link";
+
+  //APPROVALS LIST SCREEN TEXTS
+  static String actionTxt = "Action";
+  static String discardTxt = "Discard";
 }

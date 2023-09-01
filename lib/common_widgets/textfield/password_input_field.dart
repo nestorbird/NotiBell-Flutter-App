@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/color_res/app_colors.dart';
+
 class PasswordInputField extends StatefulWidget {
   final TextEditingController textController;
   final TextInputType textInputType;
@@ -24,15 +26,20 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
     return TextField(
       controller: widget.textController,
       keyboardType: widget.textInputType,
-      style: const TextStyle(fontSize: 15, color: Colors.black),
+      cursorColor: AppColors.blackThemeColor,
+      style: const TextStyle(fontSize: 14, color: Colors.black, height: 1),
       obscureText: _isPasswordVisible,
       decoration: InputDecoration(
           labelText: widget.labelText,
-          hintText: widget.hintText,
+          labelStyle: TextStyle(fontSize: 14, color: AppColors.blackThemeColor),
           floatingLabelBehavior: FloatingLabelBehavior.auto,
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.blackThemeColor),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),
           suffixIcon: IconButton(
+              color: AppColors.blackThemeColor,
               onPressed: () {
                 setState(() {
                   _isPasswordVisible = !_isPasswordVisible;

@@ -17,6 +17,7 @@ class ApprovalsListModel {
 
 class Workflow {
   Workflow({
+    required this.name,
     required this.referenceDoctype,
     required this.referenceName,
     required this.modifiedBy,
@@ -25,6 +26,7 @@ class Workflow {
     required this.fullName,
     required this.workflowTransition,
   });
+  late final String name;
   late final String referenceDoctype;
   late final String referenceName;
   late final String modifiedBy;
@@ -34,6 +36,7 @@ class Workflow {
   late final List<WorkflowTransition> workflowTransition;
 
   Workflow.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
     referenceDoctype = json['reference_doctype'];
     referenceName = json['reference_name'];
     modifiedBy = json['modified_by'];
@@ -47,6 +50,7 @@ class Workflow {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
+    data['name'] = name;
     data['reference_doctype'] = referenceDoctype;
     data['reference_name'] = referenceName;
     data['modified_by'] = modifiedBy;

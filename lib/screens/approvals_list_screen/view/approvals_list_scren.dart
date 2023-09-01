@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:apprize_mobile_app/common_widgets/appbar/appbar_widget.dart';
 import 'package:apprize_mobile_app/screens/approval_details_screen/view/approval_details_screen.dart';
 import 'package:apprize_mobile_app/screens/approvals_list_screen/provider/approval_list_provider.dart';
@@ -6,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common_widgets/containers/approvals_card_widget.dart';
+import '../../../common_widgets/containers/workflow_action_dialog.dart';
+import '../../approval_details_screen/provider/approval_details_provider.dart';
+import '../model/approvals_list_model.dart';
 
 class ApprovalsListScreen extends StatefulWidget {
   const ApprovalsListScreen({super.key});
@@ -16,10 +21,12 @@ class ApprovalsListScreen extends StatefulWidget {
 
 class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
   late ApprovalListProvider _approvalListProvider;
+  late ApprovalDetailsProvider _approvalDetailsProvider;
 
   @override
   void initState() {
     _approvalListProvider = Provider.of(context, listen: false);
+    _approvalDetailsProvider = Provider.of(context, listen: false);
     _approvalListProvider.getWorkFlowListData();
     super.initState();
   }
@@ -76,6 +83,9 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     ApprovalDetailsScreen(
+                                                      docName: value
+                                                          .workflowList[index]
+                                                          .name,
                                                       docType: value
                                                           .workflowList[index]
                                                           .referenceDoctype,
@@ -98,6 +108,26 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
                                         _approvalListProvider
                                             .getWorkFlowListData();
                                       },
+                                      onActionTap: () =>
+                                          _handleWorkflowActionPopup(
+                                              value.workflowList[index]
+                                                  .referenceDoctype,
+                                              value.workflowList[index]
+                                                  .referenceName,
+                                              value.workflowList[index]
+                                                  .workflowTransition,
+                                              value.workflowList[index]
+                                                  .currentState),
+                                      onDiscardTap: () async {
+                                        await _approvalDetailsProvider
+                                            .discardEntry(
+                                                value.workflowList[index].name);
+
+                                        if (_approvalDetailsProvider
+                                            .isEntryDiscarded) {
+                                          value.getWorkFlowListData();
+                                        }
+                                      },
                                     ));
                               })))
                 ],
@@ -105,5 +135,25 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
         ),
       );
     });
+  }
+
+  _handleWorkflowActionPopup(String docType, String docTypeId,
+      List<WorkflowTransition> workflowTransition, String currentState) async {
+    _approvalDetailsProvider.getStatesAndActions(
+        workflowTransition, currentState);
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) => WorkflowActionDialog(
+            docStates: _approvalDetailsProvider.docStates,
+            actions: _approvalDetailsProvider.docActions,
+            onSelectedAction: (selectedAction, selectedState) async {
+              await _approvalDetailsProvider.updateDocDetails(
+                  docType, docTypeId, selectedState);
+
+              if (_approvalDetailsProvider.isDocDetailsUpdated) {
+                Navigator.pop(context);
+                _approvalListProvider.getWorkFlowListData();
+              }
+            }));
   }
 }

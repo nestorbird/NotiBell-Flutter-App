@@ -18,9 +18,10 @@ class HomeOptionCard extends StatelessWidget {
         onTap: () => onTap(),
         child: Container(
           height: 100,
+          padding: const EdgeInsets.only(left: 10, right: 10),
           decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
-              borderRadius: const BorderRadius.all(Radius.circular(10))),
+              borderRadius: const BorderRadius.all(Radius.circular(15))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

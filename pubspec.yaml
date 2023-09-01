@@ -61,9 +61,15 @@ dependencies:
   #intl
   intl: ^0.18.1
   camera: ^0.10.5+3
-  
+
   path_provider: ^2.1.0
-  path: ^1.8.3
+  path: ^1.8.2
+
+  #Dependency for webview
+  webview_flutter: ^4.2.3
+
+  # Slidable
+  flutter_slidable: ^3.0.0
 
 
 dev_dependencies:

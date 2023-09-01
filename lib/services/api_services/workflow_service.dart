@@ -246,4 +246,43 @@ class WorkflowService {
           apiStatus: ApiStatus.REQUEST_FAILURE);
     }
   }
+
+  static Future<CommanResponse> discardWorkflowEntry(String docName) async {
+    try {
+      var isInternetAvailable = await InternetService.isNetworkAvailable();
+
+      if (isInternetAvailable) {
+        String baseUrl =
+            await StorageHelper().getStringValues(StorageConstants.baseUrl) ??
+                "";
+
+        String apiPath = '${ApiPaths.workflowActionListPath(baseUrl)}/$docName';
+
+        var request = {"discard": "Yes"};
+
+        var apiResponse = await ApiFunctions().putRequest(apiPath, request);
+
+        var data = apiResponse["data"] as Map<String, dynamic>;
+        if (data != null) {
+          return CommanResponse(
+              status: true,
+              message: data,
+              apiStatus: ApiStatus.REQUEST_SUCCESS);
+        } else {
+          return CommanResponse(
+              status: false, message: "", apiStatus: ApiStatus.NO_INTERNET);
+        }
+      } else {
+        return CommanResponse(
+            status: false,
+            message: "No internet connection",
+            apiStatus: ApiStatus.NO_INTERNET);
+      }
+    } catch (e) {
+      return CommanResponse(
+          status: false,
+          message: e.toString(),
+          apiStatus: ApiStatus.REQUEST_FAILURE);
+    }
+  }
 }

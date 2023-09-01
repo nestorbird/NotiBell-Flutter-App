@@ -22,7 +22,7 @@ class CompletedApprovalsCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 120,
+        height: 100,
         child: GestureDetector(
             onTap: () => onTap(),
             child: Card(
@@ -48,11 +48,18 @@ class CompletedApprovalsCardWidget extends StatelessWidget {
                                       fontSize: 13,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.greyColor)),
-                              Text(status,
-                                  style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.blueThemeColor))
+                              Container(
+                                  padding: const EdgeInsets.all(5),
+                                  width: 90,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.greenColorOpacity,
+                                      borderRadius: BorderRadius.circular(16)),
+                                  child: Text(status,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.greenColor)))
                             ],
                           ),
                           const SizedBox(height: 10),

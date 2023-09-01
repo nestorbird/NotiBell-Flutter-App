@@ -5,6 +5,7 @@ import '../../../services/preference_service/storage_helper.dart';
 
 class HomeScreenProvider extends ChangeNotifier {
   String? loggedInUserName = "";
+  String? loggedInUserEmail = "";
   String? profileImageUrl = "";
 
   getUserData() async {
@@ -12,6 +13,8 @@ class HomeScreenProvider extends ChangeNotifier {
         await StorageHelper().getStringValues(StorageConstants.fullName);
     profileImageUrl =
         await StorageHelper().getStringValues(StorageConstants.profilePic);
+    loggedInUserEmail =
+        await StorageHelper().getStringValues(StorageConstants.userId);
     notifyListeners();
   }
 }

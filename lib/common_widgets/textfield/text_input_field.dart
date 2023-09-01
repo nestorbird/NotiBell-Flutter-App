@@ -1,3 +1,4 @@
+import 'package:apprize_mobile_app/utils/color_res/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class TextInputField extends StatefulWidget {
@@ -22,10 +23,16 @@ class _TextInputFieldState extends State<TextInputField> {
     return TextField(
       controller: widget.textController,
       keyboardType: widget.textInputType,
-      style: const TextStyle(fontSize: 15, color: Colors.black),
+      cursorColor: AppColors.blackThemeColor,
+      style: const TextStyle(fontSize: 14, color: Colors.black, height: 1),
       decoration: InputDecoration(
           labelText: widget.labelText,
-          labelStyle: const TextStyle(fontSize: 15),
+          fillColor: AppColors.blackColor,
+          focusColor: AppColors.blackColor,
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.blackThemeColor),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
+          labelStyle: TextStyle(fontSize: 14, color: AppColors.blackThemeColor),
           floatingLabelBehavior: FloatingLabelBehavior.auto,
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)))),

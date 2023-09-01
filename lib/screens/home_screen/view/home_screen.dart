@@ -2,7 +2,6 @@ import 'package:apprize_mobile_app/screens/completed_approvals_screen/view/compl
 import 'package:apprize_mobile_app/screens/home_screen/provider/home_screen_provider.dart';
 import 'package:apprize_mobile_app/screens/login_screen/view/login_screen.dart';
 import 'package:apprize_mobile_app/screens/support_screen/support_screen.dart';
-import 'package:apprize_mobile_app/services/preference_service/storage_helper.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_svg/svg.dart';
@@ -10,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../../common_widgets/containers/home_option_card_widget.dart';
 import '../../../services/camera_service/camera_page.dart';
+import '../../../services/preference_service/storage_helper.dart';
 import '../../../utils/asset_res/asset_paths.dart';
 import '../../approvals_list_screen/view/approvals_list_scren.dart';
 
@@ -25,8 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String profileImageurl = "";
 
   List<String> texts = ['Home', 'Support'];
-  List<bool> _isSelected = [true, false];
-  List<Widget> _list = [const HomeScreen(), const SupportScreen()];
+  final List<bool> _isSelected = [true, false];
+  final List<Widget> _list = [const HomeScreen(), const SupportScreen()];
   List<String> images = [
     "lib/assets/images/home.png",
     "lib/assets/images/headphone.png"
@@ -40,14 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Consumer<HomeScreenProvider>(builder: (context, value, _) {
       return SafeArea(
         child: Scaffold(
           key: _globalKey,
-          drawer: _drawer,
+          drawer: _drawer(value),
           body: Stack(
             fit: StackFit.passthrough,
             children: [
@@ -85,18 +85,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       margin: const EdgeInsets.only(top: 10),
                       height: 90,
-                      width: 100,
-                      child: const Column(
+                      width: 200,
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Text 1',
-                            style: TextStyle(
+                            value.loggedInUserName!,
+                            style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 25,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text('Text 2', style: TextStyle(color: Colors.white))
+                          const Text('Attendance pending',
+                              style: TextStyle(color: Colors.white))
                         ],
                       ),
                     ),
@@ -171,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  Widget get _drawer {
+  Widget _drawer(HomeScreenProvider value) {
     return Drawer(
         child: Stack(
       fit: StackFit.passthrough,
@@ -203,13 +204,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  child: const Column(
+                  child: Column(
                     children: [
                       Text(
-                        "Abc Mishra",
-                        style: TextStyle(fontSize: 20),
+                        value.loggedInUserName!,
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text("abc977@gmail.com")
+                      Text(value.loggedInUserEmail!)
                     ],
                   ),
                 ),
@@ -221,8 +223,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: const Text(
                     'MENU',
                     style: TextStyle(
-                        letterSpacing: 3,
-                        fontSize: 14,
+                        letterSpacing: 5,
+                        fontSize: 13,
                         color: Color.fromARGB(255, 138, 137, 137)),
                   ),
                 ),
@@ -276,20 +278,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 const Divider(
                   color: Colors.grey,
                 ),
+
+                //TODO:: Need to remove the image with text from here. There should be an icon only.
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginScreen()),
-                    );
+                    StorageHelper().clearDetails();
+
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()),
+                        ((route) => false));
                   },
                   child: Container(
                     padding: const EdgeInsets.only(top: 20),
                     alignment: Alignment.center,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Image.asset('lib/assets/images/logout.png')],
+                      children: [Image.asset(AssetPaths.logoutImg)],
                     ),
                   ),
                 )

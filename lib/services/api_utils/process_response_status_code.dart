@@ -7,12 +7,13 @@ import '../preference_service/storage_helper.dart';
 import 'app_exception_class.dart';
 
 dynamic processResponse(http.Response response) {
+  _printJSONData(jsonDecode(response.body));
   switch (response.statusCode) {
     // Success
     case 200:
       var responseJson = jsonDecode(response.body);
       // var responseJson = response;
-      _printJSONData(responseJson);
+      //_printJSONData(responseJson);
 
       /// Here Returning String Body for now will change according to Need...
       return responseJson;
@@ -70,7 +71,6 @@ dynamic processLoginResponse(http.Response response) {
       throw NotFoundException(jsonDecode(response.body)['message']);
     // Internal Server Error
     case 500:
-
     default:
       throw FetchDataException('Something went wrong! ${response.statusCode}');
   }

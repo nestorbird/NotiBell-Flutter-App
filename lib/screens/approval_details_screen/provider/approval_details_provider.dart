@@ -3,10 +3,13 @@ import 'package:apprize_mobile_app/services/preference_service/storage_constants
 import 'package:apprize_mobile_app/services/preference_service/storage_helper.dart';
 import 'package:flutter/material.dart';
 
+import '../../approvals_list_screen/model/approvals_list_model.dart';
+
 class ApprovalDetailsProvider extends ChangeNotifier {
   bool isTransitionsLoaded = false;
   bool isDocDetailsLoaded = false;
   bool isDocDetailsUpdated = false;
+  bool isEntryDiscarded = false;
   List<dynamic> docTransitions = [];
   Map<String, dynamic> docDetails = {};
   Map<String, dynamic> updatedDocDetails = {};
@@ -51,9 +54,9 @@ class ApprovalDetailsProvider extends ChangeNotifier {
     if (response.status!) {
       isDocDetailsLoaded = false;
       docDetails = response.message;
-      String currentStatus = docDetails["workflow_state"] ?? "";
+      //String currentStatus = docDetails["workflow_state"] ?? "";
       status = docDetails["docstatus"];
-      getDocTransitions(doctype, currentStatus);
+      //getDocTransitions(doctype, currentStatus);
     } else {
       isDocDetailsLoaded = false;
     }
@@ -73,6 +76,37 @@ class ApprovalDetailsProvider extends ChangeNotifier {
     } else {
       isDocDetailsLoaded = false;
     }
+    notifyListeners();
+  }
+
+  Future<void> discardEntry(String docName) async {
+    isEntryDiscarded = false;
+
+    var response = await WorkflowService.discardWorkflowEntry(docName);
+    if (response.status!) {
+      isEntryDiscarded = true;
+      docDetails = response.message;
+    } else {
+      isEntryDiscarded = false;
+    }
+    notifyListeners();
+  }
+
+  void getStatesAndActions(
+      List<WorkflowTransition> workflowTransition, String currentState) async {
+    docStates.clear();
+    docActions.clear();
+    List<String> assignedRoles =
+        await StorageHelper().getStringLists(StorageConstants.userRoles) ?? [];
+
+    for (var transition in workflowTransition) {
+      if (transition.currentState == currentState &&
+          assignedRoles.contains(transition.roleAllowed)) {
+        docActions.add(transition.action);
+        docStates.add(transition.nextState);
+      }
+    }
+
     notifyListeners();
   }
 }

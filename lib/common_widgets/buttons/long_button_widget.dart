@@ -22,9 +22,7 @@ class _LongButtonWidgetState extends State<LongButtonWidget> {
             style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.blueThemeColor,
                 shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.horizontal(
-                        left: Radius.circular(15),
-                        right: Radius.circular(15)))),
+                    borderRadius: BorderRadius.all(Radius.circular(10)))),
             child: Text(
               widget.buttonText,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),

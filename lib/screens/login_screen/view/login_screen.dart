@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _urlController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    _urlController.text = "nb-apprize.frappe.cloud";
+    _urlController.text = "notibell.nestorbird.com";
   }
 
   _disposeControllers() {
@@ -128,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 AppStrings.forgotPasswordTxt,
                 style: TextStyle(
                     color: AppColors.blueThemeColor,
+                    fontSize: 13,
                     fontWeight: FontWeight.bold),
               )),
           const SizedBox(height: 30),

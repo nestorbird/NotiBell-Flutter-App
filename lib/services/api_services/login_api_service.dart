@@ -24,12 +24,12 @@ class LoginService {
           baseUrl = "https://$baseUrl";
         }
 
-        if (!_isValidUrl(baseUrl)) {
-          return CommanResponse(
-              status: false,
-              message: "Instance URL format is invalid",
-              apiStatus: ApiStatus.NO_INTERNET);
-        }
+        // if (!_isValidUrl(baseUrl)) {
+        //   return CommanResponse(
+        //       status: false,
+        //       message: "Instance URL format is invalid",
+        //       apiStatus: ApiStatus.NO_INTERNET);
+        // }
 
         var request = <String, dynamic>{};
 

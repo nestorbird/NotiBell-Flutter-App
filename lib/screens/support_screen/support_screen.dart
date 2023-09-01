@@ -15,7 +15,7 @@ class _SupportScreenState extends State<SupportScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Support Screen"),
+        title: const Text("Support Screen"),
       ),
       body: WebViewWidget(controller: controller),
     );
