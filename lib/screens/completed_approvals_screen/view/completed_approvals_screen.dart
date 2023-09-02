@@ -1,5 +1,4 @@
 import 'package:apprize_mobile_app/common_widgets/appbar/appbar_widget.dart';
-import 'package:apprize_mobile_app/screens/approval_details_screen/view/approval_details_screen.dart';
 import 'package:apprize_mobile_app/screens/completed_approvals_screen/provider/completed_approvals_provider.dart';
 import 'package:apprize_mobile_app/utils/color_res/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +56,7 @@ class _CompletedApprovalsListScreenState
                   child: Expanded(
                       child: ListView.builder(
                           shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
                           itemCount: value.workflows.length,
                           itemBuilder: (context, index) {
                             return CompletedApprovalsCardWidget(

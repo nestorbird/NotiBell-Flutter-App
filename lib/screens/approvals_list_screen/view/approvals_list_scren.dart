@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../../common_widgets/containers/approvals_card_widget.dart';
 import '../../../common_widgets/containers/workflow_action_dialog.dart';
+import '../../../common_widgets/snackbar/snackbar_widget.dart';
 import '../../approval_details_screen/provider/approval_details_provider.dart';
 import '../model/approvals_list_model.dart';
 
@@ -55,10 +56,16 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
                               color: AppColors.greyColor))),
                   const SizedBox(height: 30),
                   Visibility(
+                      visible: value.workflowList.isEmpty,
+                      child: const Center(
+                        child: Text('No pending approvals'),
+                      )),
+                  Visibility(
                       visible: !value.isLoading,
                       child: Expanded(
                           child: ListView.builder(
                               shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
                               itemCount: value.workflowList.length,
                               itemBuilder: (context, index) {
                                 return Padding(
@@ -125,6 +132,9 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
 
                                         if (_approvalDetailsProvider
                                             .isEntryDiscarded) {
+                                          await SnackbarWidget.showSnackBar(
+                                              context,
+                                              "Entry discarded successfully");
                                           value.getWorkFlowListData();
                                         }
                                       },
@@ -152,6 +162,8 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
 
               if (_approvalDetailsProvider.isDocDetailsUpdated) {
                 Navigator.pop(context);
+                await SnackbarWidget.showSnackBar(
+                    context, "Entry updated successfully");
                 _approvalListProvider.getWorkFlowListData();
               }
             }));

@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:apprize_mobile_app/common_widgets/snackbar/snackbar_widget.dart';
 import 'package:apprize_mobile_app/screens/approval_details_screen/provider/approval_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -145,6 +146,13 @@ class _ApprovalDetailsScreenState extends State<ApprovalDetailsScreen> {
                           onPressed: () async {
                             await _approvalDetailsProvider
                                 .discardEntry(widget.docName);
+
+                            if (value.isEntryDiscarded) {
+                              await SnackbarWidget.showSnackBar(
+                                  context, "Entry discarded successfully");
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            }
                           },
                           buttonBgColor: AppColors.whiteColor,
                           borderColor: AppColors.blackThemeColor,
@@ -168,6 +176,9 @@ class _ApprovalDetailsScreenState extends State<ApprovalDetailsScreen> {
                                                   selectedState);
 
                                           if (value.isDocDetailsUpdated) {
+                                            await SnackbarWidget.showSnackBar(
+                                                context,
+                                                "Entry updated successfully");
                                             Navigator.pop(context);
                                             Navigator.pop(context);
                                           }

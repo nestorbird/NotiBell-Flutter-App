@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Apprize',
+      title: 'NotiBell',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(textTheme: GoogleFonts.manropeTextTheme()),
       home: const SplashScreen(),
