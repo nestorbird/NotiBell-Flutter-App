@@ -13,4 +13,7 @@ class AssetPaths {
   static String homeCardIcon = "lib/assets/vectors/home_card_icon.svg";
   static String approvedTick = "lib/assets/vectors/approved_tick.svg";
   static String logoutImg = "lib/assets/images/logout.png";
+
+  //APPROVALS SCREEN ASSETS
+  static String cancelIcon = "lib/assets/vectors/cross_icon.svg";
 }

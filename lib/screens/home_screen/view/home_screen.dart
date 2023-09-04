@@ -96,8 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
-                          const Text('Attendance pending',
-                              style: TextStyle(color: Colors.white))
+                          // const Text('Attendance pending',
+                          //     style: TextStyle(color: Colors.white))
                         ],
                       ),
                     ),
@@ -126,18 +126,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsets.only(left: 20, right: 20, top: 30),
                     child: Column(
                       children: [
-                        HomeOptionCard(
-                          titleText: "Check In",
-                          subTitleText: "04 Aug 2023",
-                          onTap: () async {
-                            await availableCameras().then((value) =>
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) =>
-                                            CameraPage(cameras: value))));
-                          },
-                        ),
+                        Visibility(
+                            visible: false,
+                            child: HomeOptionCard(
+                              titleText: "Check In",
+                              subTitleText: "04 Aug 2023",
+                              onTap: () async {
+                                await availableCameras().then((value) =>
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                CameraPage(cameras: value))));
+                              },
+                            )),
                         const SizedBox(height: 20),
                         HomeOptionCard(
                           titleText: "Approvals",

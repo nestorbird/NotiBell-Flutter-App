@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:apprize_mobile_app/common_widgets/appbar/appbar_widget.dart';
+import 'package:apprize_mobile_app/common_widgets/popups/popup_widget.dart';
 import 'package:apprize_mobile_app/screens/approval_details_screen/view/approval_details_screen.dart';
 import 'package:apprize_mobile_app/screens/approvals_list_screen/provider/approval_list_provider.dart';
 import 'package:apprize_mobile_app/utils/color_res/app_colors.dart';
@@ -55,14 +56,16 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
                               fontWeight: FontWeight.bold,
                               color: AppColors.greyColor))),
                   const SizedBox(height: 30),
-                  Visibility(
-                      visible: value.workflowList.isEmpty,
-                      child: const Center(
-                        child: Text('No pending approvals'),
-                      )),
-                  Visibility(
-                      visible: !value.isLoading,
-                      child: Expanded(
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Visibility(
+                          visible: value.workflowList.isEmpty,
+                          child: const Center(
+                            child: Text('No pending approvals'),
+                          )),
+                      Visibility(
+                          visible: !value.isLoading,
                           child: ListView.builder(
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
@@ -139,7 +142,9 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
                                         }
                                       },
                                     ));
-                              })))
+                              }))
+                    ],
+                  ),
                 ],
               )),
         ),
@@ -151,9 +156,10 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
       List<WorkflowTransition> workflowTransition, String currentState) async {
     _approvalDetailsProvider.getStatesAndActions(
         workflowTransition, currentState);
-    await showDialog(
+
+    PopupWidget.displayPopup(
         context: context,
-        builder: (BuildContext context) => WorkflowActionDialog(
+        widget: WorkflowActionDialog(
             docStates: _approvalDetailsProvider.docStates,
             actions: _approvalDetailsProvider.docActions,
             onSelectedAction: (selectedAction, selectedState) async {
@@ -167,5 +173,37 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
                 _approvalListProvider.getWorkFlowListData();
               }
             }));
+
+    // await showGeneralDialog(
+    //   context: context,
+    //   pageBuilder: (BuildContext context, Animation<double> animation,
+    //       Animation<double> secondaryAnimation) {
+    //     return Container();
+    //   },
+    //   transitionBuilder: (ctx, animationOne, animationTwo, child) {
+    //     return Transform.scale(
+    //       scale: Curves.easeInOut.transform(animationOne.value),
+    //       child: ,
+    //     );
+    //   },
+    //   transitionDuration: const Duration(milliseconds: 300),
+    // );
+
+    // await showDialog(
+    //     context: context,
+    //     builder: (BuildContext context) => WorkflowActionDialog(
+    //         docStates: _approvalDetailsProvider.docStates,
+    //         actions: _approvalDetailsProvider.docActions,
+    //         onSelectedAction: (selectedAction, selectedState) async {
+    //           await _approvalDetailsProvider.updateDocDetails(
+    //               docType, docTypeId, selectedState);
+
+    //           if (_approvalDetailsProvider.isDocDetailsUpdated) {
+    //             Navigator.pop(context);
+    //             await SnackbarWidget.showSnackBar(
+    //                 context, "Entry updated successfully");
+    //             _approvalListProvider.getWorkFlowListData();
+    //           }
+    //         }));
   }
 }

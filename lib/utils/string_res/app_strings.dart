@@ -15,5 +15,6 @@ class AppStrings {
 
   //APPROVALS LIST SCREEN TEXTS
   static String actionTxt = "Action";
+  static String actionsTxt = "Actions";
   static String discardTxt = "Discard";
 }

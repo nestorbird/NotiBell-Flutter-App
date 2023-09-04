@@ -59,29 +59,34 @@ class _CompletedApprovalsListScreenState
                           physics: const BouncingScrollPhysics(),
                           itemCount: value.workflows.length,
                           itemBuilder: (context, index) {
-                            return CompletedApprovalsCardWidget(
-                              docId: value.workflows[index]['name'],
-                              doctype: value.workflows[index]
-                                  ['reference_doctype'],
-                              status: value.workflows[index]['status'],
-                              modifiedBy: "",
-                              workflowTransition: const [],
-                              onTap: () async {
-                                await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            CompletedApprovalDetailsScreen(
-                                              docType: value.workflows[index]
-                                                  ['reference_doctype'],
-                                              docTypeId: value.workflows[index]
-                                                  ['reference_name'],
-                                              currentStatus: value
-                                                  .workflows[index]['status'],
-                                              workflowTransition: const [],
-                                            )));
-                              },
-                            );
+                            return Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: CompletedApprovalsCardWidget(
+                                  docId: value.workflows[index]['name'],
+                                  doctype: value.workflows[index]
+                                      ['reference_doctype'],
+                                  status: value.workflows[index]['status'],
+                                  modifiedBy: "",
+                                  workflowTransition: const [],
+                                  onTap: () async {
+                                    await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                CompletedApprovalDetailsScreen(
+                                                  docType:
+                                                      value.workflows[index]
+                                                          ['reference_doctype'],
+                                                  docTypeId:
+                                                      value.workflows[index]
+                                                          ['reference_name'],
+                                                  currentStatus:
+                                                      value.workflows[index]
+                                                          ['status'],
+                                                  workflowTransition: const [],
+                                                )));
+                                  },
+                                ));
                           })))
             ],
           )),
