@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "99296020028",
+    "project_id": "notibell",
+    "storage_bucket": "notibell.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99296020028:android:4ed54618322b06d4602539",
+        "android_client_info": {
+          "package_name": "com.nb.notibell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99296020028-pgqqc69fcl09l1rbnnqudhlagbbajsja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOLf55-VI43LcfYY3KvzC3wxsUQA0_150"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99296020028-pgqqc69fcl09l1rbnnqudhlagbbajsja.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "99296020028-59upmbsbq2c9vavkghhdqd7kid7coaop.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nb.notibell"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99296020028:android:e301b89ca55125fb602539",
+        "android_client_info": {
+          "package_name": "com.nestorbird.notibell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99296020028-pgqqc69fcl09l1rbnnqudhlagbbajsja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOLf55-VI43LcfYY3KvzC3wxsUQA0_150"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99296020028-pgqqc69fcl09l1rbnnqudhlagbbajsja.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "99296020028-59upmbsbq2c9vavkghhdqd7kid7coaop.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nb.notibell"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
