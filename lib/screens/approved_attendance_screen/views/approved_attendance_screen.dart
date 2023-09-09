@@ -1,6 +1,6 @@
-import 'package:apprize_mobile_app/utils/asset_res/asset_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:notibell_mobile_app/utils/asset_res/asset_paths.dart';
 
 class ApprovedAttendanceScreen extends StatelessWidget {
   const ApprovedAttendanceScreen({super.key});

@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,40 +49,21 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC0-cRdxKHxRTOzm1TgZB1vubdpKU95KyM',
-    appId: '1:239979151828:web:13139e058ca2073fd09641',
-    messagingSenderId: '239979151828',
-    projectId: 'apprize-e7156',
-    authDomain: 'apprize-e7156.firebaseapp.com',
-    storageBucket: 'apprize-e7156.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDSEKqUpzD7-PZsdD_eJZHG4g5ZBSXZcjQ',
-    appId: '1:239979151828:android:068d4e713bf7d87ed09641',
-    messagingSenderId: '239979151828',
-    projectId: 'apprize-e7156',
-    storageBucket: 'apprize-e7156.appspot.com',
+    apiKey: 'AIzaSyBOLf55-VI43LcfYY3KvzC3wxsUQA0_150',
+    appId: '1:99296020028:android:4ed54618322b06d4602539',
+    messagingSenderId: '99296020028',
+    projectId: 'notibell',
+    storageBucket: 'notibell.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAgO3FBZ5BsNz16lpBqc5jS-PgIEHQaFEc',
-    appId: '1:239979151828:ios:c31404ff3cc24d0ad09641',
-    messagingSenderId: '239979151828',
-    projectId: 'apprize-e7156',
-    storageBucket: 'apprize-e7156.appspot.com',
-    iosClientId: '239979151828-90uvhe3vrcj93qdsed0lskqpt92tmj0a.apps.googleusercontent.com',
-    iosBundleId: 'com.example.apprizeMobileApp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAgO3FBZ5BsNz16lpBqc5jS-PgIEHQaFEc',
-    appId: '1:239979151828:ios:c31404ff3cc24d0ad09641',
-    messagingSenderId: '239979151828',
-    projectId: 'apprize-e7156',
-    storageBucket: 'apprize-e7156.appspot.com',
-    iosClientId: '239979151828-90uvhe3vrcj93qdsed0lskqpt92tmj0a.apps.googleusercontent.com',
-    iosBundleId: 'com.example.apprizeMobileApp',
+    apiKey: 'AIzaSyD7GO3IYfOOjJdIOdewOt7IF5Dam1TThrc',
+    appId: '1:99296020028:ios:ec00786592d955b6602539',
+    messagingSenderId: '99296020028',
+    projectId: 'notibell',
+    storageBucket: 'notibell.appspot.com',
+    iosClientId: '99296020028-59upmbsbq2c9vavkghhdqd7kid7coaop.apps.googleusercontent.com',
+    iosBundleId: 'com.nb.notibell',
   );
 }

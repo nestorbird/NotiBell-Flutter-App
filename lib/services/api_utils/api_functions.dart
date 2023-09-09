@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:apprize_mobile_app/services/api_utils/process_response_status_code.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:notibell_mobile_app/services/api_utils/process_response_status_code.dart';
 
 import '../preference_service/storage_constants.dart';
 import '../preference_service/storage_helper.dart';
@@ -33,6 +33,31 @@ class ApiFunctions {
       // calling process response for status of the link 200 for success
 
       return processResponse(response);
+    } catch (e) {
+      // Handing Exception
+
+      throw ExceptionHandlers().getExceptionString(e);
+    }
+  }
+
+  Future<Map<String, dynamic>> getRequestForStatus(
+    String url,
+  ) async {
+    // passing url or link in uri parse to fetch data
+
+    var uri = Uri.parse(url);
+
+    // waiting for the response from Api waiting time (TimeOutDuration) is variable here
+    try {
+      log("API URL :: $url");
+
+      var response = await http
+          .get((uri), headers: await _headers())
+          .timeout(Duration(seconds: timeOutDuration));
+
+      // calling process response for status of the link 200 for success
+
+      return processLoginResponse(response);
     } catch (e) {
       // Handing Exception
 
@@ -108,14 +133,10 @@ class ApiFunctions {
     // Creating http headers for api
     String? sessionId =
         await StorageHelper().getStringValues(StorageConstants.sessionId);
-    Map<String, String> headers = {
-      'Content-Type': 'application/json'
-    };
-
+    Map<String, String> headers = {'Content-Type': 'application/json'};
 
     if (sessionId != null && sessionId.isNotEmpty) {
-      headers.putIfAbsent(
-          'Cookie', () => "sid=$sessionId");
+      headers.putIfAbsent('Cookie', () => "sid=$sessionId");
     }
     return headers;
   }

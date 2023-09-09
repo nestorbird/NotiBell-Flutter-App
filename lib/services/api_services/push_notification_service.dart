@@ -1,6 +1,6 @@
-import 'package:apprize_mobile_app/services/api_utils/common_response.dart';
-import 'package:apprize_mobile_app/services/preference_service/storage_constants.dart';
-import 'package:apprize_mobile_app/services/preference_service/storage_helper.dart';
+import 'package:notibell_mobile_app/services/api_utils/common_response.dart';
+import 'package:notibell_mobile_app/services/preference_service/storage_constants.dart';
+import 'package:notibell_mobile_app/services/preference_service/storage_helper.dart';
 
 import '../api_utils/api_functions.dart';
 import '../api_utils/api_paths.dart';

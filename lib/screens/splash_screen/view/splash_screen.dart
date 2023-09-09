@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:apprize_mobile_app/services/preference_service/storage_constants.dart';
-import 'package:apprize_mobile_app/services/preference_service/storage_helper.dart';
-import 'package:apprize_mobile_app/utils/asset_res/asset_paths.dart';
-import 'package:apprize_mobile_app/utils/string_res/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:notibell_mobile_app/services/preference_service/storage_constants.dart';
+import 'package:notibell_mobile_app/services/preference_service/storage_helper.dart';
+import 'package:notibell_mobile_app/utils/asset_res/asset_paths.dart';
+import 'package:notibell_mobile_app/utils/string_res/app_strings.dart';
 
 import '../../home_screen/view/home_screen.dart';
 import '../../login_screen/view/login_screen.dart';

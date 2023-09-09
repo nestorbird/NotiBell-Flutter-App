@@ -1,4 +1,4 @@
-package com.example.apprize_mobile_app
+package com.nb.notibell
 
 import io.flutter.embedding.android.FlutterActivity
 

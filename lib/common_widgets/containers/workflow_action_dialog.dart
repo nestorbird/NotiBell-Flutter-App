@@ -1,5 +1,5 @@
-import 'package:apprize_mobile_app/utils/color_res/app_colors.dart';
-import 'package:apprize_mobile_app/utils/string_res/app_strings.dart';
+import 'package:notibell_mobile_app/utils/color_res/app_colors.dart';
+import 'package:notibell_mobile_app/utils/string_res/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

@@ -1,4 +1,4 @@
-import 'package:apprize_mobile_app/utils/color_res/app_colors.dart';
+import 'package:notibell_mobile_app/utils/color_res/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class LongButtonWidget extends StatefulWidget {

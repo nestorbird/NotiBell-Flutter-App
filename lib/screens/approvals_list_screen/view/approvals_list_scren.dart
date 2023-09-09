@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:apprize_mobile_app/common_widgets/appbar/appbar_widget.dart';
-import 'package:apprize_mobile_app/common_widgets/popups/popup_widget.dart';
-import 'package:apprize_mobile_app/screens/approval_details_screen/view/approval_details_screen.dart';
-import 'package:apprize_mobile_app/screens/approvals_list_screen/provider/approval_list_provider.dart';
-import 'package:apprize_mobile_app/utils/color_res/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:notibell_mobile_app/common_widgets/appbar/appbar_widget.dart';
+import 'package:notibell_mobile_app/common_widgets/popups/popup_widget.dart';
+import 'package:notibell_mobile_app/screens/approval_details_screen/view/approval_details_screen.dart';
+import 'package:notibell_mobile_app/screens/approvals_list_screen/provider/approval_list_provider.dart';
+import 'package:notibell_mobile_app/utils/color_res/app_colors.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common_widgets/containers/approvals_card_widget.dart';
@@ -43,8 +43,10 @@ class _ApprovalsListScreenState extends State<ApprovalsListScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AppbarWidget(
+                  AppbarWidget(
                     appBarTitleText: "Approvals",
+                    isOpenInBrowser: false,
+                     onOpenInBrowser: () {},
                   ),
                   const SizedBox(height: 40),
                   Visibility(

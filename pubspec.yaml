@@ -1,5 +1,5 @@
-name: apprize_mobile_app
-description: A new Flutter project.
+name: notibell_mobile_app
+description: NotiBell - Manage Approvals at Your Fingertips.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -70,6 +70,9 @@ dependencies:
 
   # Slidable
   flutter_slidable: ^3.0.0
+
+  #URL launcher
+  url_launcher: ^6.1.14
 
 
 dev_dependencies:

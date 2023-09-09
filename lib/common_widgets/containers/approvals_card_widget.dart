@@ -1,4 +1,4 @@
-import 'package:apprize_mobile_app/utils/string_res/app_strings.dart';
+import 'package:notibell_mobile_app/utils/string_res/app_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../screens/approvals_list_screen/model/approvals_list_model.dart';

@@ -1,10 +1,9 @@
-# apprize_mobile_app
+# NotiBell Mobile App
 
-A new Flutter project.
-
+Manage approvals at your fingertips.
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a NotiBell mobile application.
 
 A few resources to get you started if this is your first Flutter project:
 

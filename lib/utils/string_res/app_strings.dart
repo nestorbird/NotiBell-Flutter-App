@@ -17,4 +17,8 @@ class AppStrings {
   static String actionTxt = "Action";
   static String actionsTxt = "Actions";
   static String discardTxt = "Discard";
+
+  static String cancelTxt = "Cancel";
+  static String updateMessageTxt = "Please update the app to the latest version";
+  static String okTxt = "OK";
 }

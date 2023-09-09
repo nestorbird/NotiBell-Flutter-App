@@ -1,6 +1,6 @@
-import 'package:apprize_mobile_app/screens/approvals_list_screen/model/approvals_list_model.dart';
-import 'package:apprize_mobile_app/services/api_utils/api_paths.dart';
-import 'package:apprize_mobile_app/services/api_utils/common_response.dart';
+import 'package:notibell_mobile_app/screens/approvals_list_screen/model/approvals_list_model.dart';
+import 'package:notibell_mobile_app/services/api_utils/api_paths.dart';
+import 'package:notibell_mobile_app/services/api_utils/common_response.dart';
 
 import '../api_utils/api_functions.dart';
 import '../api_utils/api_status.dart';

@@ -1,15 +1,18 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:apprize_mobile_app/common_widgets/buttons/long_button_widget.dart';
-import 'package:apprize_mobile_app/common_widgets/snackbar/snackbar_widget.dart';
-import 'package:apprize_mobile_app/common_widgets/textfield/password_input_field.dart';
-import 'package:apprize_mobile_app/common_widgets/textfield/text_input_field.dart';
-import 'package:apprize_mobile_app/screens/login_screen/provider/login_provider.dart';
-import 'package:apprize_mobile_app/utils/color_res/app_colors.dart';
-import 'package:apprize_mobile_app/utils/string_res/app_strings.dart';
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:notibell_mobile_app/common_widgets/buttons/long_button_widget.dart';
+import 'package:notibell_mobile_app/common_widgets/snackbar/snackbar_widget.dart';
+import 'package:notibell_mobile_app/common_widgets/textfield/password_input_field.dart';
+import 'package:notibell_mobile_app/common_widgets/textfield/text_input_field.dart';
+import 'package:notibell_mobile_app/screens/login_screen/provider/login_provider.dart';
+import 'package:notibell_mobile_app/utils/string_res/app_strings.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common_widgets/popups/simple_popup.dart';
 import '../../../utils/asset_res/asset_paths.dart';
 import '../../home_screen/view/home_screen.dart';
 
@@ -30,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     _initControllers();
+    _checkForPushNotificationPermission();
     _loginProvider = Provider.of(context, listen: false);
     super.initState();
   }
@@ -45,6 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _urlController.text = "notibell.nestorbird.com";
+    _emailController.text = "demo@nestorbird.com";
+    _passwordController.text = "NestorBird@8426";
   }
 
   _disposeControllers() {
@@ -53,44 +59,55 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController.dispose();
   }
 
+  _checkForPushNotificationPermission() async {
+    if (Platform.isIOS) {
+      FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+      firebaseMessaging.requestPermission();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<LoginProvider>(builder: (context, value, _) {
       return SafeArea(
         child: Scaffold(
-          body: SingleChildScrollView(
-              child: Column(
-            children: [
-              Container(
-                height: 230,
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(AssetPaths.signInBackgroundImg),
-                      fit: BoxFit.cover),
-                ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                          height: 90,
-                          width: 90,
-                          child: Image.asset(AssetPaths.appLogo2)),
-                      Text(
-                        AppStrings.signInTitleTxt,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ]),
-              ),
-              const SizedBox(height: 20),
-              _loginForm
-            ],
-          )),
+          body: WillPopScope(
+              onWillPop: () async {
+                return false;
+              },
+              child: SingleChildScrollView(
+                  child: Column(
+                children: [
+                  Container(
+                    height: 230,
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(AssetPaths.signInBackgroundImg),
+                          fit: BoxFit.cover),
+                    ),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                              height: 90,
+                              width: 90,
+                              child: Image.asset(AssetPaths.appLogo2)),
+                          Text(
+                            AppStrings.signInTitleTxt,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ]),
+                  ),
+                  const SizedBox(height: 20),
+                  _loginForm
+                ],
+              ))),
         ),
       );
     });
@@ -122,16 +139,16 @@ class _LoginScreenState extends State<LoginScreen> {
             labelText: AppStrings.passwordTxt,
           ),
           const SizedBox(height: 30),
-          Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                AppStrings.forgotPasswordTxt,
-                style: TextStyle(
-                    color: AppColors.blueThemeColor,
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold),
-              )),
-          const SizedBox(height: 30),
+          // Align(
+          //     alignment: Alignment.centerRight,
+          //     child: Text(
+          //       AppStrings.forgotPasswordTxt,
+          //       style: TextStyle(
+          //           color: AppColors.blueThemeColor,
+          //           fontSize: 13,
+          //           fontWeight: FontWeight.bold),
+          //     )),
+          // const SizedBox(height: 30),
           LongButtonWidget(
               buttonText: AppStrings.loginTxt,
               onPressed: () => _loginButtonHandler())
@@ -141,13 +158,41 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _loginButtonHandler() async {
-    await _loginProvider.login(
-        _urlController.text, _emailController.text, _passwordController.text);
-    if (_loginProvider.isLoginSuccess) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+    await _loginProvider.checkInstanceRunningStatus();
+
+    if (_loginProvider.isInstanceRunning) {
+      await _loginProvider.login(
+          _urlController.text, _emailController.text, _passwordController.text);
+      if (_loginProvider.isLoginSuccess) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()));
+      } else {
+        SnackbarWidget.showSnackBar(context, _loginProvider.loginMessage);
+      }
     } else {
-      SnackbarWidget.showSnackBar(context, _loginProvider.loginMessage);
+      await showGeneralDialog(
+          context: context,
+          transitionBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: ScaleTransition(
+                scale: animation,
+                child: child,
+              ),
+            );
+          },
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return SizedBox(
+              height: 100,
+              child: SimplePopup(
+                message: AppStrings.updateMessageTxt,
+                buttonText: AppStrings.okTxt,
+                onOkPressed: () {
+                  exit(0);
+                },
+              ),
+            );
+          });
     }
   }
 }
