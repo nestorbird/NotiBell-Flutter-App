@@ -48,9 +48,10 @@ class _LoginScreenState extends State<LoginScreen> {
     _urlController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+    // _urlController.text = "nb-apprize.frappe.cloud";
     _urlController.text = "notibell.nestorbird.com";
-    _emailController.text = "demo@nestorbird.com";
-    _passwordController.text = "NestorBird@8426";
+    _emailController.text = "gaurav@yopmail.com";
+    _passwordController.text = "Test@123";
   }
 
   _disposeControllers() {

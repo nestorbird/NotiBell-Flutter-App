@@ -10,8 +10,10 @@ import 'package:notibell_mobile_app/screens/splash_screen/view/splash_screen.dar
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
+import 'locator.dart';
 
 void main() async {
+  setupServices();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       name: "notibell", options: DefaultFirebaseOptions.currentPlatform);
