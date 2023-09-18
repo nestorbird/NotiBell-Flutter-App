@@ -1,7 +1,12 @@
-# NotiBell Mobile App
+<div align="center">
+<!-- TODO: add link to website once it is ready -->
+<h1><a href="https://nestorbird.com/notibell/" _blank=true>NotiBell</a></h1>
+Manage approvals at your fingertips
+</div>
+
+# NotiBell Flutter App
 
 ## About
-Manage approvals at your fingertips.
 
 <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" />
 <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" /> 
