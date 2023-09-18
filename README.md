@@ -54,21 +54,21 @@ Follow the following steps to set up and run the mobile app -
 
 Users can log in with their user credentials along with the instance URL. 
 
-<a href="https://github.com/nestorbird/NotiBell/assets/145128044/a8537d90-26fe-4d51-91b8-e076a6c7ca05" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell/assets/145128044/a8537d90-26fe-4d51-91b8-e076a6c7ca05" height="500" /></a>
+<a href="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/a8537d90-26fe-4d51-91b8-e076a6c7ca05" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/a8537d90-26fe-4d51-91b8-e076a6c7ca05" height="500" /></a>
 
 At the Home Screen, Users will have the option to check the approvals and their past approvals as well.
 
-<a href="https://github.com/nestorbird/NotiBell/assets/145128044/eb57f4a6-b308-4e50-9cfa-d69024423398" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell/assets/145128044/eb57f4a6-b308-4e50-9cfa-d69024423398" height="500" /></a>
+<a href="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/eb57f4a6-b308-4e50-9cfa-d69024423398" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/eb57f4a6-b308-4e50-9cfa-d69024423398" height="500" /></a>
 
 When the user checks for the approvals, they will get the list of approvals on which the user can check who the sender of the approval is, its ID, doctype, status, etc. from where they can either discard the approval or take action on it, as per the configured workflow.
 
 If users tap on the card, then they will move on to the Approval Details Screen.
 
-<a href="https://github.com/nestorbird/NotiBell/assets/145128044/1e2fb173-7443-4d4a-8cef-bee84eb4d657" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell/assets/145128044/1e2fb173-7443-4d4a-8cef-bee84eb4d657" height="500" /></a>
+<a href="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/1e2fb173-7443-4d4a-8cef-bee84eb4d657" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/1e2fb173-7443-4d4a-8cef-bee84eb4d657" height="500" /></a>
 
 On the Approval Detail screen, the user can view the details of the doctype. From this screen also the user is allowed to take the actions and discard the approvals.
 
-<a href="https://github.com/nestorbird/NotiBell/assets/145128044/359ef054-01b4-422e-9547-89911ae2aee5" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell/assets/145128044/359ef054-01b4-422e-9547-89911ae2aee5" height="500" /></a>
+<a href="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/359ef054-01b4-422e-9547-89911ae2aee5" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/359ef054-01b4-422e-9547-89911ae2aee5" height="500" /></a>
 
 ## License
 MIT License (see [License](https://github.com/nestorbird/NotiBell/blob/Development/LICENSE))
