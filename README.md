@@ -25,13 +25,35 @@ Get Notified, Get Ahead with NotiBell!
 2. You can get push notifications for approvals on your mobiles.
 3. Check-in and Check-out feature through face recognition.
 
-
 ## Project Requirements and Dependencies
 
-The very first requirement to run this mobile app is, that you should set up the active & working Frappe ERPNext instance. To set up the ERPNext you can visit [here](https://github.com/frappe/erpnext#readme).
-After setting up the instance you need to install the [NotiBell](https://frappecloud.com/marketplace/apps/notibell) custom app from Frappe Marketplace
+The very first requirement to run this mobile app is, that you should set up the active & working Frappe ERPNext instance. To set up the ERPNext you can visit [here](https://github.com/nestorbird/NotiBell#readme).
 
-The following are the requirements that you'll need to run the mobile app - 
+## Frappe Installation
+
+### 1. Containerized Installation
+You can use Docker to deploy the ERPNext for the production channel. For more info [click here](https://github.com/frappe/frappe_docker)
+
+### 2. Manual Installation
+Frappe ERPNext supports easy installation process i.e. through script, and it will install all the dependencies for you. For more info [click here](https://github.com/frappe/bench)
+
+NotiBell is a Custom App build over Frappe. Following are the supported Frappe versions.
+
+| Supports Frappe Versions | Dependency |
+|-|-|
+|v13 | None|
+|v14| HRMS |
+
+### Pre-Requsites at Frappe end
+- *Workflow* _ONLY_
+
+#### How to Install and Setup
+```
+bench get-app https://github.com/nestorbird/NotiBell.git --branch main
+bench --site <site_name> install-app notibell
+```
+
+### Pre-Requsites at Flutter end - 
 
 1. [Android Studio](https://developer.android.com/studio) or [Visual Studio Code](https://code.visualstudio.com/)
 2. Flutter SDK installation
@@ -50,9 +72,9 @@ Follow the following steps to set up and run the mobile app -
 4. Select the target device from the device explorer menu.
 5. Run the project by pressing Function + F5 or execute the command - ```flutter run``` from the terminal.
 
-## How to Make Use of The Project
+## How to Make Use of The Flutter Project
 
-Users can log in with their user credentials along with the instance URL. 
+Users can log in with their user credentials along with the instance URL.
 
 <a href="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/a8537d90-26fe-4d51-91b8-e076a6c7ca05" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell-Flutter-App/assets/145128044/a8537d90-26fe-4d51-91b8-e076a6c7ca05" height="500" /></a>
 
@@ -73,7 +95,7 @@ On the Approval Detail screen, the user can view the details of the doctype. Fro
 ## License
 MIT License (see [License](https://github.com/nestorbird/NotiBell/blob/Development/LICENSE))
 
-The NotiBell Mobile App code is licensed as MIT license and the Documentation is licensed as Creative Commons (CC-BY-SA-3.0) and the copyright is owned by NestorBird India Private Limited and Contributors.
+The NotiBell Mobile App code is licensed as MIT license and the copyright is owned by NestorBird India Private Limited and Contributors.
 
 By contributing to NotiBell, you agree that your contributions will be licensed under MIT license.
 
