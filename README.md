@@ -76,3 +76,6 @@ MIT License (see [License](https://github.com/nestorbird/NotiBell/blob/Developme
 The NotiBell Mobile App code is licensed as MIT license and the Documentation is licensed as Creative Commons (CC-BY-SA-3.0) and the copyright is owned by NestorBird India Private Limited and Contributors.
 
 By contributing to NotiBell, you agree that your contributions will be licensed under MIT license.
+
+## Contact Us
+For support please get in touch with us at sales@nestorbird.com for a demonstration.
