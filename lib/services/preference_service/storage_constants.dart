@@ -20,6 +20,9 @@ class StorageConstants {
   static String baseUrl = "baseUrl";
   static String sessionExpires = "Expires";
   static String userRoles = "userRoles";
+  static String employeeId = "employeeId";
+  static String registeredFaceData = "registeredFaceData";
+  static String isUserCheckedIn = "isUserCheckedIn";
 }
 
 class UserProfile {

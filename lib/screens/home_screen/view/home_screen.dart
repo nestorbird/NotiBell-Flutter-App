@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:notibell_mobile_app/common_widgets/snackbar/snackbar_widget.dart';
 import 'package:notibell_mobile_app/screens/completed_approvals_screen/view/completed_approvals_screen.dart';
@@ -9,9 +8,14 @@ import 'package:notibell_mobile_app/screens/support_screen/support_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common_widgets/containers/home_option_card_widget.dart';
+import '../../../locator.dart';
+import '../../../services/face_detection_service/camera.service.dart';
+import '../../../services/face_detection_service/face_detector_service.dart';
+import '../../../services/face_detection_service/ml_service.dart';
 import '../../../services/preference_service/storage_helper.dart';
 import '../../../utils/asset_res/asset_paths.dart';
 import '../../approvals_list_screen/view/approvals_list_scren.dart';
+import '../../sign_up_screen/view/sign_up_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,12 +36,28 @@ class _HomeScreenState extends State<HomeScreen> {
     "lib/assets/images/headphone.png"
   ];
 
-  final cameras = availableCameras();
+  // final cameras = availableCameras();
   @override
   void initState() {
     _homeScreenProvider = Provider.of(context, listen: false);
     _homeScreenProvider.getUserData();
+    _homeScreenProvider.getEmployeeId();
+    _homeScreenProvider.isUserCheckedIn();
+    _initializeServices();
     super.initState();
+  }
+
+  final MLService _mlService = locator<MLService>();
+  final FaceDetectorService _mlKitService = locator<FaceDetectorService>();
+  final CameraService _cameraService = locator<CameraService>();
+  bool loading = false;
+
+  _initializeServices() async {
+    setState(() => loading = true);
+    await _cameraService.initialize();
+    await _mlService.initialize();
+    _mlKitService.initialize();
+    setState(() => loading = false);
   }
 
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
@@ -126,26 +146,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsets.only(left: 20, right: 20, top: 30),
                     child: Column(
                       children: [
-                        Container(
-                            foregroundDecoration: const BoxDecoration(
-                              color: Colors.grey,
-                              backgroundBlendMode: BlendMode.saturation,
-                            ),
-                            child: HomeOptionCard(
-                              titleText: "Check In",
-                              subTitleText:
-                                  "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
-                              onTap: () async {
-                                SnackbarWidget.showSnackBar(
-                                    context, "Coming soon...");
-                                // await availableCameras().then((value) =>
-                                //     Navigator.push(
-                                //         context,
-                                //         MaterialPageRoute(
-                                //             builder: (_) =>
-                                //                 CameraPage(cameras: value))));
-                              },
-                            )),
+                        HomeOptionCard(
+                          titleText: !value.isFaceRegistered
+                              ? "Register Face"
+                              : value.isCheckedIn
+                                  ? "Check Out"
+                                  : "Check In",
+                          subTitleText:
+                              "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
+                          onTap: () async {
+                            await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => SignUp(
+                                        isRegistered: value.isFaceRegistered)));
+
+                            value.getEmployeeId();
+                            value.isUserCheckedIn();
+                          },
+                        ),
                         const SizedBox(height: 20),
                         HomeOptionCard(
                           titleText: "Approvals",

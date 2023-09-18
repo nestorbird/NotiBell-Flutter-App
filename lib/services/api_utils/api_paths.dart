@@ -13,6 +13,13 @@ class ApiPaths {
   static String workflowListPath(String baseUrl) =>
       "$baseUrl/api/method/notibell.api.action_list";
 
+  static String getEmployeeIdPath(
+          String baseUrl, String endpoint, String filters) =>
+      '$baseUrl/api/resource/Employee?filters=$filters';
+
+  static String getEmployeeDetailsPath(String baseUrl, String employeeId) =>
+      '$baseUrl/api/resource/Employee/$employeeId';
+
   static String workflowDocTransitionPath(String baseUrl, String doctype) =>
       "$baseUrl/api/resource/Workflow/$doctype";
 
@@ -24,4 +31,16 @@ class ApiPaths {
 
   static String checkAppStatusPath() =>
       "https://control-centre.nestorbird.com/api/method/control_centre.api.validate";
+
+  static String faceRegistrationPath(
+          String baseUrl, String docType, String docId) =>
+      "$baseUrl/api/resource/$docType/$docId";
+
+  static String getEmployeeCheckInStatus(
+          String baseUrl, String endpoint, String filters, String feilds) =>
+      '$baseUrl/$endpoint?filters=$filters&fields=$feilds';
+
+  static String createEmployeeCheckin(
+          String baseUrl, String endpoint,) =>
+      '$baseUrl/$endpoint';
 }

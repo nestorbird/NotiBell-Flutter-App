@@ -18,6 +18,17 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+   Future<void> getEmployeeId(String url, String username, String password) async {
+    var response = await LoginService().login(url, username, password);
+    if (response.status!) {
+      isLoginSuccess = true;
+    } else {
+      isLoginSuccess = false;
+      loginMessage = response.message;
+    }
+    notifyListeners();
+  }
+
   Future<void> checkInstanceRunningStatus() async {
     var response = await InternetService.checkAppStatus();
 
