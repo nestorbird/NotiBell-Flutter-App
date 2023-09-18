@@ -66,8 +66,8 @@ On the Approval Detail screen, the user can view the details of the doctype. Fro
 <a href="https://github.com/nestorbird/NotiBell/assets/145128044/359ef054-01b4-422e-9547-89911ae2aee5" target="blank"><img align="center" src="https://github.com/nestorbird/NotiBell/assets/145128044/359ef054-01b4-422e-9547-89911ae2aee5" height="500" /></a>
 
 ## License
-Apache Attribute Commans (see License.md)
+MIT License (see [License](https://github.com/nestorbird/NotiBell/blob/Development/LICENSE))
 
-The NotiBell Mobile App code is licensed as Apache and the Documentation is licensed as Creative Commons (CC-BY-SA-3.0) and the copyright is owned by NestorBird India Private Limited and Contributors.
+The NotiBell Mobile App code is licensed as MIT license and the Documentation is licensed as Creative Commons (CC-BY-SA-3.0) and the copyright is owned by NestorBird India Private Limited and Contributors.
 
-By contributing to NotiBell, you agree that your contributions will be licensed under Apache license.
+By contributing to NotiBell, you agree that your contributions will be licensed under MIT license.
